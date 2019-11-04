@@ -1,0 +1,14 @@
+EXTERNAL FUNCTION Startup()
+EXTERNAL FUNCTION Cleanup ()
+' if the password field is empty then a public key is created which is returned in 'password'
+EXTERNAL FUNCTION encrypt_buffer (buffer,size,STRING password)
+' provide password or encryption key but not both.
+EXTERNAL FUNCTION decrypt_buffer (buffer,size,STRING password, STRING key)
+EXTERNAL FUNCTION GetAdler32 (pbuffer,size)
+EXTERNAL FUNCTION zlib_compress (source,ssize,dest,dsize,level)
+EXTERNAL FUNCTION zlib_compress2 (source,ssize,STRING dbuffer)
+EXTERNAL FUNCTION zlib_decompress (source,ssize,dest,dsize)
+' main interface functions
+EXTERNAL FUNCTION FileListen (auth,port)
+EXTERNAL FUNCTION FileDownload (TP2PFILE ,STRING addr, port)
+EXTERNAL FUNCTION FileUpload (TP2PFILE ,STRING addr, port)

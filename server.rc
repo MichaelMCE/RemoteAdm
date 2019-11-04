@@ -1,0 +1,15 @@
+#include "winres.h"
+
+IDI_STANDBY ICON "standby.ico"
+aDI_STANDBY ICON "asimple.ico"
+
+#define IDD_DIALOG1                     101
+#define IDI_STANDBY                     103
+
+IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 0, 0
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+
+END

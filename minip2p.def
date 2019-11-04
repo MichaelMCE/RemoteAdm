@@ -1,0 +1,14 @@
+VERSION  0.3
+EXPORTS
+%_StartLibrary_minip2p
+Cleanup
+FileDownload
+FileListen
+FileUpload
+GetAdler32
+Startup
+decrypt_buffer
+encrypt_buffer
+zlib_compress
+zlib_compress2
+zlib_decompress

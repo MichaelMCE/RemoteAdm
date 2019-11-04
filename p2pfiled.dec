@@ -1,0 +1,68 @@
+
+$$FILE_IDENT		= "KaM"
+$$FILE_DEFAULTAUTH	= "none"	' default password if none supplied (listen mode only)
+$$FILE_DEFAULTPORT	= 28010		' default transfer port to bind if none supplied
+$$FILE_SEND			= 1			' incomming transfer mode
+$$FILE_GET			= 2			' incomming transfer mode
+$$FILE_BUFFER		= 524288	' set block size per transfer (also sets memory allocation blk size) excluding last block
+$$FILE_CRC			= 0x01
+$$FILE_ENCRYPT		= 0x02
+$$FILE_COMPRESS		= 0x04
+
+$$SD_RECEIVE		= 0x00
+$$SD_SEND			= 0x01
+$$SD_BOTH			= 0x02
+
+$$IJL				= "ijl15.dll"
+$$mp2p_name			= "minip2p"
+$$mp2p_ext			= ".dll"
+
+'$$RD                = 0x0000	' read file
+'$$WR                = 0x0001	' write file
+'$$RW                = 0x0002	' read/write file
+'$$WRNEW             = 0x0003	' write new file
+'$$RWNEW             = 0x0004	' read/write new file
+'$$NOSHARE           = 0x0000	' share file for none
+'$$RDSHARE           = 0x0010	' share file for read
+'$$WRSHARE           = 0x0020	' share file for write
+'$$RWSHARE           = 0x0030	' share file for read & write
+'$$ALL               = -1		' CLOSE ($$ALL)
+
+
+PACKED TCRC
+	ULONG			.filepos	' read or write to file at this offset
+	ULONG			.size		' size of data to read/write(size of following block)
+	ULONG			.usize		' uncompressed data size, used for allocating buffers. only valid if compression flag set
+'	UBYTE			.flags		' crc data, encryption and compression flags
+	XLONG			.crc32		' 32bit crc of data before compression and encryption. only valid if crc flag set
+END TYPE
+
+
+
+PACKED TP2PFILE
+	STRING * 3		.ident		' should always read $$FILE_IDENT
+	ULONG			.auth
+	STRING * 255	.srcfile	' source filename
+	STRING * 255	.desfile	' destination filename
+'	XLONG			.fileid		' handle to file
+	XLONG			.start		' begin read/write file at this offset
+	XLONG			.end		' end read/write file at this offset
+	XLONG			.size		' total data to read/write/send/get
+	XLONG			.wmode		' write mode (file access write flags)
+	XLONG			.blocks		' number of bytes per block 
+	UBYTE			.fmode		' transfer type ($$FILE_SEND/GET)
+	UBYTE			.flags		' crc data, encryption and compression flaqs
+	UBYTE			.error		' 0 = no error,1 = unable to open file or file does not exist
+END TYPE
+
+PACKED TP2P
+	FUNCADDR 	.FileListen (XLONG,XLONG)
+	FUNCADDR 	.FileDownload (TP2PFILE,STRING,XLONG)
+	FUNCADDR 	.FileUpload (TP2PFILE,STRING,XLONG)
+	FUNCADDR 	.GetAdler (XLONG,XLONG)
+
+	FUNCADDR 	.ResetListen()
+	FUNCADDR 	.Free(TP2P)
+	XLONG		.index		'index to this TP2PADRH in storage array
+END TYPE
+
