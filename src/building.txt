@@ -1,0 +1,12 @@
+Build instructions:
+
+
+Build in sequence:
+  1) fs\BUILD_fs.bat
+  2) minip2p\BUILD_minip2p.bat
+  3) client\BUILD_client.bat
+  4) server\BUILD_server.bat
+
+
+
+Get XBlite 2.4.1 from: https://softwiki.net/XBLite.html
