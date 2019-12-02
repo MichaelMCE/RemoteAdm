@@ -1,7 +1,10 @@
 @ECHO OFF
-REM Batch file to set xblite env variables
+
+REM Batch file to set xblite Env. variables
+REM Run this once per console session
 
 SET XBLDIR=r:\xblite
-SET PATH=r:\xblite\bin;%PATH%
-SET LIB=r:\xblite\lib;%LIB%
-SET INCLUDE=r:\xblite\include;%INCLUDE%
+
+SET PATH=%XBLDIR%\bin;%PATH%
+SET LIB=%XBLDIR%\lib;%LIB%
+SET INCLUDE=%XBLDIR%\include;%INCLUDE%

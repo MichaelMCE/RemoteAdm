@@ -16,9 +16,9 @@ VERSION	"0.7"
 	IMPORT "comctl32"
 	IMPORT "comdlg32"
 	IMPORT "advapi32"
-	IMPORT "p2pfiled.dec"
-	IMPORT "net.dec"
-	IMPORT "fs.obj" 		' compile fs.x (as library) first to obtain both fs.lib and fs.dll
+	IMPORT "../p2pfiled.dec"
+	IMPORT "../net.dec"
+	IMPORT "../fs/fs.obj" 		' compile fs.x (as library) first to obtain both fs.lib and fs.dll
 
 	
 $$Tab1	= 120

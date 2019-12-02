@@ -1,7 +1,0 @@
-VERSION  0.3
-EXPORTS
-%_StartLibrary_fs
-FSshutdown
-freeP2P
-fs
-newP2P

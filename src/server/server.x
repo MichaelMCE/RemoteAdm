@@ -14,12 +14,12 @@ VERSION	"0.7"
 	IMPORT "advapi32"
 	IMPORT "msvcrt"
 	IMPORT "psapi"
-	IMPORT "fs.obj"		' compile fs.x (as library) first to obtain both fs.lib and fs.dll
+	IMPORT "../fs/fs.obj"		' compile fs.x (as library) first to obtain both fs.lib and fs.dll
 '	IMPORT "ijl15"		' get library 'intel_jpg_lib.zip' from http://perso.wanadoo.fr/xblite/
 						' or http://xblite.xbasic.org/
-	IMPORT "ijl15d.dec"
-	IMPORT "net.dec"
-	IMPORT "p2pfiled.dec"
+	IMPORT "../ijl15d.dec"
+	IMPORT "../net.dec"
+	IMPORT "../p2pfiled.dec"
 	IMPORT "user32"
 	IMPORT "shell32"
 	IMPORT "comctl32"

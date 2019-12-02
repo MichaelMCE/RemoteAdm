@@ -19,7 +19,7 @@ MAKEFILE "xdll.xxx"
 	IMPORT "zlib"		' download library from the yahoo/xblite files area
 	IMPORT "advapi32"
 	IMPORT "msvcrt"
-	IMPORT "p2pfiled.dec"
+	IMPORT "../p2pfiled.dec"
 	IMPORT "winmm"
 
 $$TARGET_RESOLUTION = 50

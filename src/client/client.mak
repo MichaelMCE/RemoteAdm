@@ -1,7 +1,7 @@
 # Note: the next six lines are modified by the makefile-generator in xcowlite.x.
 APP       = client
 LIBS      =  xbl.lib gdi32.lib wsock32.lib kernel32.lib msvcrt.lib user32.lib shell32.lib comctl32.lib comdlg32.lib advapi32.lib
-OBJS      = $(APP).obj fs.obj
+OBJS      = $(APP).obj ../fs/fs.obj
 START     = START /W
 XBLITE    = xblite
 SUBSYSTEM = WINDOWS,4.0

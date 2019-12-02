@@ -5,7 +5,7 @@ VERSION "0.3"
 MAKEFILE "xdll.xxx"
 
 	IMPORT "kernel32"
-	IMPORT "p2pfiled.dec"
+	IMPORT "../p2pfiled.dec"
 
 PACKED TP2PADRH
 	XLONG		.hLib		'handle to .dll as returned by 'LoadLibraryA()'
